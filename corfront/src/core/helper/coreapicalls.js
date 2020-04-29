@@ -25,6 +25,7 @@ export const getUser = (userId,token) => {
     }
   })
   .then(response => {
+    //console.log(response.json);
     return response.json();
   })
   .catch(err => console.log(err));
