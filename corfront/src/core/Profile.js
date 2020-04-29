@@ -37,7 +37,7 @@ export default function Profile(){
       if(newuser!==null)
       return (
         <div>
-            <Base>
+            <Base  title="Profile Page" description="These are your personal details.">
             <div className="row">
                 <div className="col-2">First Name:</div>
                 <div className="col-10">{newuser.name}</div>

@@ -4,6 +4,10 @@ const express = require("express");
 const app = express();
 
 
+
+
+
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -44,3 +48,10 @@ const port = 8000;
 app.listen(port, () => {
     console.log(`app is running at ${port}`);
   });
+
+
+
+
+
+
+  // web scrapping .

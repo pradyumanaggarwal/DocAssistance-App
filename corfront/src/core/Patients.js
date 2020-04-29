@@ -26,7 +26,7 @@ export default function Patients() {
   }, []);
 
   return (
-    <Base title="Citizens Page" description="Welcome to the Tshirt Store">
+    <Base title="Patients List" description="Here's a List of your Patients">
         {patients.map((patient, index) => {
           return (
             <div key={index} className="container-fluid mb-4">

@@ -31,6 +31,19 @@ export const getUser = (userId,token) => {
   .catch(err => console.log(err));
 }
 
+export const  getReal = () => {
+  return fetch(`${API}/home`,{
+    method : "GET",
+  })
+  .then(response => {
+    console.log(response.json);
+    return response.json();
+  })
+  .catch(err => console.log(err));
+}
+
+
+
 // export const createCategory = (userId, token, category) => {
 //   return fetch(`${API}/category/create/${userId}`, {
 //     method: "POST",

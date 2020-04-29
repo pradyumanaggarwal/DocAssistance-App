@@ -18,7 +18,7 @@ const Routes = () => {
                 <Route path="/citizens" exact component={Citizens} />
                 <PrivateRoute path="/patient" exact component={Patients} />
                 <PrivateRoute path="/profile" exact component={Profile} />
-
+                
             </Switch>
         </BrowserRouter>
     )

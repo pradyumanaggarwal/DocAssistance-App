@@ -3,6 +3,14 @@ const { check, validationResult } = require("express-validator");
 var jwt = require("jsonwebtoken");
 var expressJwt = require("express-jwt");
 
+
+const cheerio = require("cheerio")
+const fs = require("fs");
+const json2csv = require("json2csv").Parser;
+const request = require("request-promise");
+
+
+
 exports.signup = (req, res) => {
   const errors = validationResult(req);
 
@@ -94,3 +102,97 @@ exports.isAdmin = (req, res, next) => {
   }
   next();
 };
+
+
+
+
+
+// web scrapping tools.
+
+
+const figure = "https://www.worldometers.info/coronavirus/country/india/";
+
+(async () => {
+    let coronaData = [];
+    const response = await request({
+        url : figure,
+        headers:{
+            "Content-Type": "text/html; charset=UTF-8"
+        },
+        gzip:true,
+        br: true
+    });
+
+    let $ = cheerio.load(response);
+    //let coronaviruscases = $('div[class="maincounter-number"] > span').text();
+
+    let coronaviruscases = []
+    $('div[class="maincounter-number"] > span').each(function(idx, elem) {
+        let number = $(elem).text();
+        coronaviruscases.push(number);
+        console.log(number);
+    });
+
+    coronaData.push({
+        coronaviruscases : coronaviruscases
+    });
+  
+
+    const j2cp = new json2csv()
+    const csv = j2cp.parse(coronaData)
+  
+    fs.writeFileSync("./coronaidata",csv , "utf-8");
+  
+}
+
+)();
+
+
+/// web scrapping ends here.
+
+
+
+
+
+exports.getReal  = (req,res) => {
+
+
+
+  const figure = "https://www.worldometers.info/coronavirus/country/india/";
+
+  (async () => {
+    let coronaData = [];
+    const response = await request({
+        url : figure,
+        headers:{
+            "Content-Type": "text/html; charset=UTF-8"
+        },
+        gzip:true,
+        br: true
+    });
+
+    let $ = cheerio.load(response);
+    //let coronaviruscases = $('div[class="maincounter-number"] > span').text();
+
+    let coronaviruscases = []
+    $('div[class="maincounter-number"] > span').each(function(idx, elem) {
+        let number = $(elem).text();
+        coronaviruscases.push(number);
+        console.log(number);
+    });
+
+    coronaData.push({
+        coronaviruscases : coronaviruscases
+    });
+  
+
+    const j2cp = new json2csv()
+    const csv = j2cp.parse(coronaData)
+  
+    //fs.writeFileSync("./coronaidata",csv , "utf-8");
+    return res.json(coronaviruscases);
+  
+}
+
+)();
+}

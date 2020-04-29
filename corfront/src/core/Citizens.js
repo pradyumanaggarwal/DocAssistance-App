@@ -31,7 +31,7 @@ export default function Citizens() {
 
 
   return (
-    <Base title="Citizens Page" description="Welcome to the Tshirt Store">
+    <Base title="Citizens Page" description="All Citizens who have been tested!">
         {citizens.map((citizen, index) => {
           return (
             <div key={index} className="container-fluid mb-4">
