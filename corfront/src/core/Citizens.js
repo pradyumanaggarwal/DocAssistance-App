@@ -52,8 +52,8 @@ export default function Citizens() {
                 <div className="col-8">{citizen.contact}</div>
             </div>
             <div className="row">
-                <div className="col-4">Tested :</div>
-                <div className="col-8">{citizen.tested}</div>
+                <div className="col-4 text-info"> Corona Tested :</div>
+                <div className="col-8">{((citizen.tested) && <p>Positive</p>)}{((!citizen.tested) && <p>Negative</p>)}</div>
             </div>
             <div className="row">
                 <div className="col-4">Cheched By :</div>

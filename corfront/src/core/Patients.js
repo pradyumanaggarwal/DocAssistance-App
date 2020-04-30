@@ -48,7 +48,7 @@ export default function Patients() {
                 </div>
                 <div className="row">
                     <div className="col-4">Tested :</div>
-                    <div className="col-8">{patient.tested}</div>
+                    <div className="col-8">{((patient.tested) && <p>True</p>)}{((!patient.tested) && <p>False</p>)}</div>
                 </div>
             </div>
           );
