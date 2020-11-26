@@ -27,6 +27,12 @@ const Menu = ({ history }) => (
           Citizens
         </Link>
       </li>
+      {/* {isAutheticated() && isAutheticated().user.role === 0 && (
+        <li className="nav-item">
+         <a href ="http://localhost:4000/" style={currentTab(history, "/citizens")}
+          className="nav-link">Chat</a>
+        </li>
+      )} */}
       {isAutheticated() && isAutheticated().user.role === 0 && (
         <li className="nav-item">
           <Link
@@ -70,6 +76,12 @@ const Menu = ({ history }) => (
             </Link>
           </li>
         </Fragment>
+      )}
+      {isAutheticated() && (
+        <li className="nav-item">
+          <a href ="http://localhost:4000/" style={currentTab(history, "/citizens")}
+          className="nav-link">Chat</a>
+        </li>
       )}
       {isAutheticated() && (
         <li className="nav-item">

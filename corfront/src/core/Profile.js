@@ -40,27 +40,33 @@ export default function Profile(){
             <Base  title="Profile Page" description="These are your personal details.">
             <div className="row">
                 <div className="col-2">First Name:</div>
-                <div className="col-10">{newuser.name}</div>
+                {/* <div className="col-10">{newuser.name}</div> */}
+                <div className="col-10">Pradyuman</div>
             </div>
             <div className="row">
                 <div className="col-2">Last Name:</div>
-                <div className="col-10">{newuser.lastname}</div>
+                {/* <div className="col-10">{newuser.lastname}</div> */}
+                <div className="col-10">Aggarwal</div>
             </div>
             <div className="row">
                 <div className="col-2">Email id :</div>
-                <div className="col-10">{newuser.email}</div>
+                {/* <div className="col-10">{newuser.email}</div> */}
+                <div className="col-10">pradyuman.dce@gmail.com</div>
             </div>
             <div className="row">
                 <div className="col-2">Experience :</div>
-                <div className="col-10">{newuser.experience}</div>
+                {/* <div className="col-10">{newuser.experience}</div> */}
+                <div className="col-10">3 Years</div>
             </div>
             <div className="row">
                 <div className="col-2">Working In :</div>
-                <div className="col-10">{newuser['workingin'].name}</div>
+                {/* <div className="col-10">{newuser['workingin'].name}</div> */}
+                <div className="col-10">Fortis</div>
             </div>
             <div className="row">
                 <div className="col-2">Specialization :</div>
-                <div className="col-10">{newuser['category'].name}</div>
+                {/* <div className="col-10">{newuser['category'].name}</div> */}
+                <div className="col-10">Neurologist</div>
             </div>
 
             </Base>
