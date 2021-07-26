@@ -12,7 +12,6 @@ router.param("userId", getUserById);
 router.post("/patient/create/:userId",
 isSignedIn,
 isAuthenticated,
-isAdmin,
 createPatient
 );
 

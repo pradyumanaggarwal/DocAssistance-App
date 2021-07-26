@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
 import { Link } from "react-router-dom";
-import { signup } from "../auth/helper";
 
+import {isAutheticated} from '../auth/helper/index'
+import { AddPatient } from "../core/helper/coreapicalls";
+const { user, token } = isAutheticated();
 const Signup = () => {
   const [values, setValues] = useState({
     name: "",
-    lastName: "",
-    email: "",
-    password: "",
+    description : "",
+    address: "",
+    contact: "",
     error: "",
     success: false
   });
 
-  const { name, lastName , email, password, error, success } = values;
+  const { name, description , address, contact,error, success } = values;
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -22,7 +24,7 @@ const Signup = () => {
   const onSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false });
-    signup({ name,lastName ,email, password })
+    AddPatient({ name,description,address,contact},user._id,token)
       .then(data => {
         if (data.error) {
           setValues({ ...values, error: data.error, success: false });
@@ -30,15 +32,15 @@ const Signup = () => {
           setValues({
             ...values,
             name: "",
-            lastName : "",
-            email: "",
-            password: "",
+            description : "",
+            address: "",
+            contact: "",
             error: "",
             success: true
           });
         }
       })
-      .catch(console.log("Error in signup"));
+      .catch(console.log("Error in adding patient"));
   };
 
   const signUpForm = () => {
@@ -47,7 +49,7 @@ const Signup = () => {
         <div className="col-md-6 offset-sm-3 text-left">
           <form>
             <div className="form-group">
-              <label className="text-light">First Name</label>
+              <label className="text-light">Name</label>
               <input
                 className="form-control"
                 onChange={handleChange("name")}
@@ -56,33 +58,34 @@ const Signup = () => {
               />
             </div>
             <div className="form-group">
-              <label className="text-light">Last Name</label>
+              <label className="text-light">Description</label>
               <input
                 className="form-control"
-                onChange={handleChange("lastName")}
+                onChange={handleChange("description")}
                 type="text"
-                value={lastName}
+                value={description}
               />
             </div>
             <div className="form-group">
-              <label className="text-light">Email</label>
+              <label className="text-light">Address</label>
               <input
                 className="form-control"
-                onChange={handleChange("email")}
-                type="email"
-                value={email}
+                onChange={handleChange("address")}
+                type="text"
+                value={address}
               />
             </div>
 
             <div className="form-group">
-              <label className="text-light">Password</label>
+              <label className="text-light">Contact</label>
               <input
-                onChange={handleChange("password")}
+                onChange={handleChange("contact")}
                 className="form-control"
-                type="password"
-                value={password}
+                type="number"
+                value={contact}
               />
             </div>
+           
             <button onClick={onSubmit} className="btn btn-success btn-block">
               Submit
             </button>
@@ -100,8 +103,7 @@ const Signup = () => {
             className="alert alert-success"
             style={{ display: success ? "" : "none" }}
           >
-          New account was created successfully. Please
-            <Link to="/signin">Login Here</Link>
+          New Patient is added successfully !!!!!
           </div>
         </div>
       </div>
@@ -124,7 +126,7 @@ const Signup = () => {
   };
 
   return (
-    <Base title="Sign up page" description="A page for user to sign up!">
+    <Base title="Add Patients" >
       {successMessage()}
       {errorMessage()}
       {signUpForm()}

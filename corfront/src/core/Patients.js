@@ -23,6 +23,7 @@ export default function Patients() {
 
   useEffect(() => {
     loadAllPatients();
+    console.log(patients);
   }, []);
 
   return (

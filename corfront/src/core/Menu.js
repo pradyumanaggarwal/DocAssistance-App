@@ -18,7 +18,7 @@ const Menu = ({ history }) => (
           Home
         </Link>
       </li>
-      <li className="nav-item">
+     {/* <li className="nav-item">
         <Link
           style={currentTab(history, "/citizens")}
           className="nav-link"
@@ -27,12 +27,14 @@ const Menu = ({ history }) => (
           Citizens
         </Link>
       </li>
-      {/* {isAutheticated() && isAutheticated().user.role === 0 && (
+*/}
+    {isAutheticated() && isAutheticated().user.role === 0 && (
         <li className="nav-item">
          <a href ="http://localhost:4000/" style={currentTab(history, "/citizens")}
           className="nav-link">Chat</a>
         </li>
-      )} */}
+      )
+    } 
       {isAutheticated() && isAutheticated().user.role === 0 && (
         <li className="nav-item">
           <Link
@@ -52,6 +54,28 @@ const Menu = ({ history }) => (
             to="/profile"
           >
             A. Dashboard
+          </Link>
+        </li>
+      )}
+      {isAutheticated() && isAutheticated().user.role === 0 && (
+        <li className="nav-item">
+          <Link
+            style={currentTab(history, "/addpatient")}
+            className="nav-link"
+            to="/addpatient"
+          >
+            Add Patient
+          </Link>
+        </li>
+      )}
+      {isAutheticated() && isAutheticated().user.role === 0 && (
+        <li className="nav-item">
+          <Link
+            style={currentTab(history, "/patient")}
+            className="nav-link"
+            to="/patient"
+          >
+            Patient List
           </Link>
         </li>
       )}
@@ -77,12 +101,12 @@ const Menu = ({ history }) => (
           </li>
         </Fragment>
       )}
-      {isAutheticated() && (
+      {/*isAutheticated() && (
         <li className="nav-item">
           <a href ="http://localhost:4000/" style={currentTab(history, "/citizens")}
           className="nav-link">Chat</a>
         </li>
-      )}
+      )*/}
       {isAutheticated() && (
         <li className="nav-item">
           <span

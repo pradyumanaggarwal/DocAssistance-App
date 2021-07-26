@@ -18,6 +18,7 @@ const patientSchema = new mongoose.Schema(
     doctor: {
       type: ObjectId,
       ref: "User",
+    
       //required: true
     },
     address: {

@@ -5,6 +5,7 @@ import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import Citizens from "./core/Citizens";
 import Patients from "./core/Patients";
+import Patient from './user/Patient'
 import AdminRoute from "./auth/helper/AdminRoutes";
 import PrivateRoute from "./auth/helper/PrivateRoutes";
 import Profile from "./core/Profile";
@@ -17,6 +18,7 @@ const Routes = () => {
                 <Route path="/signin" exact component={Signin} />
                 <Route path="/citizens" exact component={Citizens} />
                 <PrivateRoute path="/patient" exact component={Patients} />
+                <PrivateRoute path="/addpatient" exact component={Patient} />
                 <PrivateRoute path="/profile" exact component={Profile} />
                 
             </Switch>

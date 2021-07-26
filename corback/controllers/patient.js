@@ -1,11 +1,13 @@
 const Patient = require("../models/patient");
+const User = require("../models/user");
 const formidable = require("formidable");
 const _ = require("lodash");
 const fs = require("fs");
+const user = require("../models/user");
 
 exports.createPatient = (req,res) => {
-
-  let form = new formidable.IncomingForm();
+  
+  /*let form = new formidable.IncomingForm();
   form.keepExtensions = true;
 
   form.parse(req, (err, fields, file) => {
@@ -13,18 +15,25 @@ exports.createPatient = (req,res) => {
       return res.status(400).json({
         error: "problem with image"
       });
-    }
+    }*/
     //destructure the fields
-    const { name,tested} = fields;
+    const { name,description,address,contact} = req.body.patient;
+  
 
-    if (!name||!tested) {
+    /*if (!name||!tested) {
       return res.status(400).json({
         error: "Please include all fields"
       });
-    }
-
-    let patient = new Patient(fields);
-
+    }*/
+    
+    let patient = new Patient({
+      name:name,
+      description:description,
+      address:address,
+      contact:contact,
+      doctor:req.body.userId
+    });
+    console.log(patient)
     //handle file here
     // if (file.photo) {
     //   if (file.photo.size > 3000000) {
@@ -44,7 +53,12 @@ exports.createPatient = (req,res) => {
           error: "Saving Patient to DB failed!"
         });
       }
-      res.json(patient);
+      res.json({
+        name : name,
+        description:description,
+        address,address,
+        contact:contact,
+        doctor:req.body.userId
     });
   });
 
@@ -54,7 +68,7 @@ exports.getAllPatients = (req,res) => {
 
     let limit = req.query.limit ? parseInt(req.query.limit) : 8;
     let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
-
+  
     Patient.find({doctor : req.profile._id})
     //.populate("_id")
     .sort([[sortBy, "asc"]])
